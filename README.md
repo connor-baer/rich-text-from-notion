@@ -1,10 +1,10 @@
 <div align="center">
 
-# package-template <!-- omit in TOC -->
+# rich-text-from-notion <!-- omit in TOC -->
 
-JS package template repository
+A library to convert [Notion](https://notion.so) page content to the Contentful [Rich Text](https://www.contentful.com/developers/docs/concepts/rich-text/) document format.
 
-[![npm version](https://badge.fury.io/js/%40madebyconnor%2Fpackage-template.svg)](https://badge.fury.io/js/%40madebyconnor%2Fpackage-template) [![Build Status](https://travis-ci.org/connor-baer/package-template.svg?branch=master)](https://travis-ci.org/connor-baer/package-template) [![codecov](https://codecov.io/gh/connor-baer/package-template/branch/master/graph/badge.svg)](https://codecov.io/gh/connor-baer/package-template) [![License MIT](https://img.shields.io/github/license/connor-baer/package-template.svg)](https://github.com/connor-baer/package-template/blob/master/LICENSE.md)
+[![npm version](https://badge.fury.io/js/%40madebyconnor%2Frich-text-from-notion.svg)](https://badge.fury.io/js/%40madebyconnor%2Frich-text-from-notion) [![Build Status](https://travis-ci.org/connor-baer/rich-text-from-notion.svg?branch=master)](https://travis-ci.org/connor-baer/rich-text-from-notion) [![codecov](https://codecov.io/gh/connor-baer/rich-text-from-notion/branch/master/graph/badge.svg)](https://codecov.io/gh/connor-baer/rich-text-from-notion) [![License MIT](https://img.shields.io/github/license/connor-baer/rich-text-from-notion.svg)](https://github.com/connor-baer/rich-text-from-notion/blob/master/LICENSE.md)
 
 </div>
 
@@ -19,38 +19,38 @@ JS package template repository
 
 ---
 
-[`package-template`](https://www.npmjs.com/package/@madebyconnor/package-template) is a template repository for my JavaScript modules.
+[`rich-text-from-notion`](https://www.npmjs.com/package/@madebyconnor/rich-text-from-notion) is *in writing...*
 
 Some standout features include...
 
-All this clocks in at around ⚡ kB gzipped.
+All this clocks in at around 3.7 kB gzipped.
 
 ⚠️ Requires Node >= 8.0.0.
 
 ## Installation
 
-Install `@madebyconnor/package-template` with your favorite package manager.
+Install `@madebyconnor/rich-text-from-notion` with your favorite package manager.
 
 ```shell
 # yarn
-yarn add @madebyconnor/package-template
+yarn add @madebyconnor/rich-text-from-notion
 # npm
-npm i @madebyconnor/package-template
+npm install @madebyconnor/rich-text-from-notion
 ```
 
 ## Getting started
 
-`@madebyconnor/package-template` exports a function
+`@madebyconnor/rich-text-from-notion` exports a function
 
 ```js
-import sayHello from '@madebyconnor/package-template';
+import richTextFromNotion from '@madebyconnor/rich-text-from-notion';
 
-sayHello('Tessa')
+richTextFromNotion(notionPageContent)
 
 /*
     returns:
 
-    Hello Tessa
+    rich text. duh! (in writing...)
  */
 ```
 
@@ -67,4 +67,4 @@ Here are instructions for some of the popular bundlers:
 
 ## Changelog
 
-See [GitHub Releases](https://github.com/connor-baer/package-template/releases).
+See [GitHub Releases](https://github.com/connor-baer/rich-text-from-notion/releases).
