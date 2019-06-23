@@ -1,1 +1,1 @@
-module.exports = require('@sumup/foundry/eslint').react;
+module.exports = require('@sumup/foundry/eslint').base;
