@@ -22,7 +22,7 @@
     "lint": "foundry run eslint --quiet \"src/**/*.js\"",
     "lint:fix": "yarn lint --fix",
     "test": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --no-cache",
     "test:coverage:upload": "codecov",
     "size": "size-limit",
     "prerelease": "yarn build",
