@@ -1,0 +1,37 @@
+sudo: required
+
+dist: trusty
+
+language: node_js
+
+node_js:
+  - '8'
+  - '10'
+
+cache:
+  yarn: true
+  directories:
+    - 'node_modules'
+
+install: yarn --frozen-lockfile
+
+jobs:
+  include:
+    # Run tests in parallel
+    - stage: test
+      script: yarn lint
+    - script: yarn test:coverage --runInBand
+      # Upload coverage reports to Codecov
+      after_success: yarn test:coverage:upload -t ${CODECOV_TOKEN}
+    - stage: build
+      script: yarn build
+      script: yarn size
+    - stage: publish
+      script: skip
+      # Publish package to NPM
+      deploy:
+        provider: script
+        skip_cleanup: true
+        on:
+          all_branches: true
+        script: yarn release
