@@ -1,12 +1,12 @@
-import { BLOCKS, MARKS, NOTION_BLOCKS } from './constants';
+import { BLOCKS, MARKS, NOTION_BLOCKS, NOTION_MARKS } from './constants';
 import isEmpty from './utils/is-empty';
 import get from './utils/get';
 
 const markMap = {
-  b: MARKS.BOLD,
-  i: MARKS.ITALIC,
-  c: MARKS.CODE,
-  h: MARKS.HIGHLIGHT
+  [NOTION_MARKS.BOLD]: MARKS.BOLD,
+  [NOTION_MARKS.ITALIC]: MARKS.ITALIC,
+  [NOTION_MARKS.CODE]: MARKS.CODE,
+  [NOTION_MARKS.HIGHLIGHT]: MARKS.HIGHLIGHT
 };
 
 function toMark(mark = []) {

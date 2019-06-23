@@ -20,3 +20,10 @@ export const NOTION_BLOCKS = {
   DIVIDER: 'divider',
   COLLECTION_VIEW: 'collection_view'
 };
+
+export const NOTION_MARKS = {
+  BOLD: 'b',
+  ITALIC: 'i',
+  CODE: 'c',
+  HIGHLIGHT: 'h'
+};
