@@ -19,11 +19,9 @@ jobs:
     - stage: test
       script: yarn lint
     - script: yarn test:coverage --runInBand
-      # Upload coverage reports to Codecov
       after_success: yarn test:coverage:upload -t ${CODECOV_TOKEN}
-    - stage: build
-      script: yarn build
-      script: yarn size
+    - script: yarn build
+      after_success: yarn size
     - stage: publish
       script: skip
       # Publish package to NPM
