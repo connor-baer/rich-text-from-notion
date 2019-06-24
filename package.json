@@ -1,6 +1,6 @@
 {
   "name": "@madebyconnor/rich-text-from-notion",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0",
   "description": "JS package template",
   "sideEffects": false,
   "main": "dist/index.cjs.js",
