@@ -9,7 +9,7 @@ export {
   NOTION_MARKS
 } from './constants';
 
-export default function richTextFromNotion(page) {
+export function richTextFromNotion(page) {
   const blocks = get(page, 'recordMap.block', {});
   const content = notionBlocksToRichTextNodes(blocks);
   return {

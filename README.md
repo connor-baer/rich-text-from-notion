@@ -43,7 +43,7 @@ npm install @madebyconnor/rich-text-from-notion
 `@madebyconnor/rich-text-from-notion` exports a function
 
 ```js
-import richTextFromNotion from '@madebyconnor/rich-text-from-notion';
+import { richTextFromNotion } from '@madebyconnor/rich-text-from-notion';
 
 richTextFromNotion(notionPageContent)
 
