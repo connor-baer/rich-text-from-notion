@@ -1,6 +1,10 @@
-import { BLOCKS, MARKS as CONTENTFUL_MARKS } from '@contentful/rich-text-types';
+import {
+  BLOCKS,
+  MARKS as CONTENTFUL_MARKS,
+  INLINES
+} from '@contentful/rich-text-types';
 
-export { BLOCKS };
+export { BLOCKS, INLINES };
 
 export const MARKS = {
   ...CONTENTFUL_MARKS,

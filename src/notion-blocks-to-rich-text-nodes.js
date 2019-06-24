@@ -1,4 +1,10 @@
-import { BLOCKS, MARKS, NOTION_BLOCKS, NOTION_MARKS } from './constants';
+import {
+  BLOCKS,
+  MARKS,
+  INLINES,
+  NOTION_BLOCKS,
+  NOTION_MARKS
+} from './constants';
 import isEmpty from './utils/is-empty';
 import get from './utils/get';
 
@@ -19,6 +25,19 @@ export function toMark(mark = []) {
 
 export function toText(text = []) {
   const [value, marks = []] = text;
+  const hyperlink = marks.find(mark => mark.indexOf('a') >= 0);
+
+  if (hyperlink) {
+    const marksWithoutHyperlink = marks.filter(mark => mark !== hyperlink);
+    return {
+      nodeType: INLINES.HYPERLINK,
+      content: [toText([value, marksWithoutHyperlink])],
+      data: {
+        uri: hyperlink[1]
+      }
+    };
+  }
+
   return {
     nodeType: 'text',
     value,
