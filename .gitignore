@@ -1,6 +1,7 @@
 # Project
 dist
 .DS_Store
+__coverage__
 
 # Logs
 logs
