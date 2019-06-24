@@ -23,19 +23,23 @@ export function toMark(mark = []) {
   };
 }
 
+export function toHyperlink(text, uri) {
+  return {
+    nodeType: INLINES.HYPERLINK,
+    content: [toText(text)],
+    data: { uri }
+  };
+}
+
 export function toText(text = []) {
   const [value, marks = []] = text;
-  const hyperlink = marks.find(mark => mark.indexOf('a') >= 0);
+  const hyperlink = marks.find(
+    mark => mark.indexOf(NOTION_MARKS.HYPERLINK) >= 0
+  );
 
   if (hyperlink) {
     const marksWithoutHyperlink = marks.filter(mark => mark !== hyperlink);
-    return {
-      nodeType: INLINES.HYPERLINK,
-      content: [toText([value, marksWithoutHyperlink])],
-      data: {
-        uri: hyperlink[1]
-      }
-    };
+    return toHyperlink([value, marksWithoutHyperlink], hyperlink[1]);
   }
 
   return {
@@ -139,11 +143,7 @@ export default function notionBlocksToRichTextNodes(blocks = {}) {
   /* eslint-disable no-restricted-syntax, no-continue */
   for (const block of Object.values(blocks)) {
     const type = get(block, 'value.type');
-    const transformerFn = transformerMap[type];
-
-    if (!transformerFn) {
-      continue;
-    }
+    const transformerFn = transformerMap[type] || toParagraph;
 
     const node = transformerFn(block);
 

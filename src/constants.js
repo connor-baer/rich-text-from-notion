@@ -29,5 +29,6 @@ export const NOTION_MARKS = {
   BOLD: 'b',
   ITALIC: 'i',
   CODE: 'c',
-  HIGHLIGHT: 'h'
+  HIGHLIGHT: 'h',
+  HYPERLINK: 'a'
 };
