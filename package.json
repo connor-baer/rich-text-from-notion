@@ -1,7 +1,7 @@
 {
   "name": "@madebyconnor/rich-text-from-notion",
   "version": "1.0.0-alpha.1",
-  "description": "JS package template",
+  "description": "A library to convert a Notion page to the Contentful Rich Text document format",
   "sideEffects": false,
   "main": "dist/index.cjs.js",
   "jsnext:main": "dist/index.esm.js",
