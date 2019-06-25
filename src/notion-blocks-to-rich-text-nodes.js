@@ -122,7 +122,7 @@ export function toHorizontalRule() {
   };
 }
 
-const transformerMap = {
+const defaultTransformerFns = {
   [NOTION_BLOCKS.HEADER]: toHeading(2),
   [NOTION_BLOCKS.SUB_HEADER]: toHeading(3),
   [NOTION_BLOCKS.SUB_SUB_HEADER]: toHeading(4),
@@ -134,7 +134,9 @@ const transformerMap = {
   [NOTION_BLOCKS.DIVIDER]: toHorizontalRule
 };
 
-export default function notionBlocksToRichTextNodes(blocks = {}) {
+export default function notionBlocksToRichTextNodes(blocks = {}, options = {}) {
+  const { transformFns: customTransformFns, fallbackTransformFn } = options;
+  const transformFns = { ...defaultTransformerFns, ...customTransformFns };
   const nodes = [];
 
   let tmpListType = null;
@@ -143,7 +145,7 @@ export default function notionBlocksToRichTextNodes(blocks = {}) {
   /* eslint-disable no-restricted-syntax, no-continue */
   for (const block of Object.values(blocks)) {
     const type = get(block, 'value.type');
-    const transformerFn = transformerMap[type] || toParagraph;
+    const transformerFn = transformFns[type] || fallbackTransformFn;
 
     const node = transformerFn(block);
 

@@ -9,9 +9,17 @@ export {
   NOTION_MARKS
 } from './constants';
 
-export function richTextFromNotion(page) {
+const defaultOptions = {
+  transformFns: {},
+  fallbackTransformFn: () => null
+};
+
+export function richTextFromNotion(page, options) {
   const blocks = get(page, 'recordMap.block', {});
-  const content = notionBlocksToRichTextNodes(blocks);
+  const content = notionBlocksToRichTextNodes(blocks, {
+    ...defaultOptions,
+    ...options
+  });
   return {
     nodeType: 'document',
     data: {},
