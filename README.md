@@ -23,7 +23,7 @@ A library to convert [Notion](https://notion.so) page content to the Contentful 
 
 Some standout features include...
 
-All this clocks in at around 3.7 kB gzipped.
+All this clocks in at around 4.5 kB gzipped.
 
 ⚠️ Requires Node >= 8.0.0.
 

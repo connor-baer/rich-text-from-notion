@@ -31,7 +31,7 @@
   "size-limit": [
     {
       "path": "dist/index.cjs.js",
-      "limit": "4 kB"
+      "limit": "4.5 kB"
     }
   ],
   "devDependencies": {
