@@ -1,6 +1,6 @@
 {
   "name": "@madebyconnor/rich-text-from-notion",
-  "version": "1.0.0-alpha.4",
+  "version": "0.0.0-semantically-released",
   "description": "A library to convert a Notion page to the Contentful Rich Text document format",
   "sideEffects": false,
   "main": "dist/index.cjs.js",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "@sumup/foundry": "^1.4.0-beta.4",
+    "@sumup/foundry": "^1.5.0",
     "babel-jest": "^24.8.0",
     "codecov": "^3.5.0",
     "jest": "^24.8.0",
