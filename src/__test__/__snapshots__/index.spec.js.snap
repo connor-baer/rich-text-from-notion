@@ -1,0 +1,994 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`notionBlocksToRichTextNodes should transform a callout 1`] = `
+Object {
+  "content": Array [
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": "This is a callout",
+    },
+  ],
+  "data": Object {
+    "color": "gray_background",
+    "icon": "⚠️",
+  },
+  "nodeType": "callout",
+}
+`;
+
+exports[`notionBlocksToRichTextNodes should transform a divider 1`] = `
+Object {
+  "content": Array [],
+  "nodeType": "hr",
+}
+`;
+
+exports[`notionBlocksToRichTextNodes should transform a heading 1 1`] = `
+Object {
+  "content": Array [
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": "Heading 1",
+    },
+  ],
+  "nodeType": "heading-1",
+}
+`;
+
+exports[`notionBlocksToRichTextNodes should transform a heading 2 1`] = `
+Object {
+  "content": Array [
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": "Heading 2",
+    },
+  ],
+  "nodeType": "heading-2",
+}
+`;
+
+exports[`notionBlocksToRichTextNodes should transform a heading 3 1`] = `
+Object {
+  "content": Array [
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": "Heading 3",
+    },
+  ],
+  "nodeType": "heading-3",
+}
+`;
+
+exports[`notionBlocksToRichTextNodes should transform a page 1`] = `
+Object {
+  "content": Array [],
+  "data": Object {
+    "icon": "👋",
+    "image": Object {
+      "position": 0.5,
+      "src": "https://notion.so/images/page-cover/rijksmuseum_mignons_1660.jpg",
+    },
+  },
+  "nodeType": "document",
+}
+`;
+
+exports[`notionBlocksToRichTextNodes should transform a quote 1`] = `
+Object {
+  "content": Array [
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": "This is for the misfits. For the crazy ones.",
+    },
+  ],
+  "nodeType": "blockquote",
+}
+`;
+
+exports[`notionBlocksToRichTextNodes should transform an image 1`] = `
+Object {
+  "content": Array [],
+  "data": Object {
+    "alt": undefined,
+    "caption": Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": undefined,
+    },
+    "src": "https://images.unsplash.com/photo-1498464619740-386503e7e7f5?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb",
+    "type": "image",
+  },
+  "nodeType": "embedded-entry-block",
+}
+`;
+
+exports[`notionBlocksToRichTextNodes should transform an ordered list 1`] = `
+Array [
+  Object {
+    "content": Array [
+      Object {
+        "content": Array [
+          Object {
+            "marks": Array [],
+            "nodeType": "text",
+            "value": "One",
+          },
+        ],
+        "nodeType": "paragraph",
+      },
+    ],
+    "listType": "ordered-list",
+    "nodeType": "list-item",
+  },
+  Object {
+    "content": Array [
+      Object {
+        "content": Array [
+          Object {
+            "marks": Array [],
+            "nodeType": "text",
+            "value": "Two
+Two and a half",
+          },
+        ],
+        "nodeType": "paragraph",
+      },
+    ],
+    "listType": "ordered-list",
+    "nodeType": "list-item",
+  },
+  Object {
+    "content": Array [
+      Object {
+        "content": Array [
+          Object {
+            "marks": Array [],
+            "nodeType": "text",
+            "value": "Three",
+          },
+        ],
+        "nodeType": "paragraph",
+      },
+    ],
+    "listType": "ordered-list",
+    "nodeType": "list-item",
+  },
+]
+`;
+
+exports[`notionBlocksToRichTextNodes should transform an unordered list 1`] = `
+Array [
+  Object {
+    "content": Array [
+      Object {
+        "content": Array [
+          Object {
+            "marks": Array [],
+            "nodeType": "text",
+            "value": "Item",
+          },
+        ],
+        "nodeType": "paragraph",
+      },
+    ],
+    "listType": "unordered-list",
+    "nodeType": "list-item",
+  },
+  Object {
+    "content": Array [
+      Object {
+        "content": Array [
+          Object {
+            "marks": Array [],
+            "nodeType": "text",
+            "value": "Item",
+          },
+        ],
+        "nodeType": "paragraph",
+      },
+    ],
+    "listType": "unordered-list",
+    "nodeType": "list-item",
+  },
+  Object {
+    "content": Array [
+      Object {
+        "content": Array [
+          Object {
+            "marks": Array [],
+            "nodeType": "text",
+            "value": "Item",
+          },
+        ],
+        "nodeType": "paragraph",
+      },
+    ],
+    "listType": "unordered-list",
+    "nodeType": "list-item",
+  },
+]
+`;
+
+exports[`notionBlocksToRichTextNodes should transform text 1`] = `
+Object {
+  "content": Array [
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": "Bacon ipsum dolor amet beef ",
+    },
+    Object {
+      "marks": Array [
+        Object {
+          "data": undefined,
+          "type": "bold",
+        },
+      ],
+      "nodeType": "text",
+      "value": "bold",
+    },
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": " ham ",
+    },
+    Object {
+      "marks": Array [
+        Object {
+          "data": undefined,
+          "type": "italic",
+        },
+      ],
+      "nodeType": "text",
+      "value": "italic",
+    },
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": " pig ",
+    },
+    Object {
+      "marks": Array [
+        Object {
+          "data": undefined,
+          "type": undefined,
+        },
+      ],
+      "nodeType": "text",
+      "value": "struck-through",
+    },
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": " cow ",
+    },
+    Object {
+      "marks": Array [
+        Object {
+          "data": undefined,
+          "type": "code",
+        },
+      ],
+      "nodeType": "text",
+      "value": "code",
+    },
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": " tail ",
+    },
+    Object {
+      "marks": Array [
+        Object {
+          "data": "yellow_background",
+          "type": "highlight",
+        },
+      ],
+      "nodeType": "text",
+      "value": "highlight",
+    },
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": " pork ",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "link",
+        },
+      ],
+      "data": Object {
+        "uri": "https://example.com",
+      },
+      "nodeType": "hyperlink",
+    },
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": " meatloaf ",
+    },
+    Object {
+      "marks": Array [
+        Object {
+          "data": "940b0cf1-ab3e-479e-b624-7cc55de196e5",
+          "type": undefined,
+        },
+      ],
+      "nodeType": "text",
+      "value": "‣",
+    },
+    Object {
+      "marks": Array [],
+      "nodeType": "text",
+      "value": ". Shoulder sausage porchetta landjaeger. Ground round kevin tongue venison brisket burgdoggen pork belly landjaeger. Chuck jerky frankfurter kevin, beef ribs meatball leberkas pork chop tenderloin beef.",
+    },
+  ],
+  "nodeType": "paragraph",
+}
+`;
+
+exports[`richTextFromNotion should convert a full Notion page to rich text 1`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "Heading 1",
+        },
+      ],
+      "nodeType": "heading-1",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "Heading 2",
+        },
+      ],
+      "nodeType": "heading-2",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "Heading 3",
+        },
+      ],
+      "nodeType": "heading-3",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "Bacon ipsum dolor amet beef ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": undefined,
+              "type": "bold",
+            },
+          ],
+          "nodeType": "text",
+          "value": "bold",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " ham ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": undefined,
+              "type": "italic",
+            },
+          ],
+          "nodeType": "text",
+          "value": "italic",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " pig ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": undefined,
+              "type": undefined,
+            },
+          ],
+          "nodeType": "text",
+          "value": "struck-through",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " cow ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": undefined,
+              "type": "code",
+            },
+          ],
+          "nodeType": "text",
+          "value": "code",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " tail ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": "yellow_background",
+              "type": "highlight",
+            },
+          ],
+          "nodeType": "text",
+          "value": "highlight",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " pork ",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "marks": Array [],
+              "nodeType": "text",
+              "value": "link",
+            },
+          ],
+          "data": Object {
+            "uri": "https://example.com",
+          },
+          "nodeType": "hyperlink",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " meatloaf ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": "940b0cf1-ab3e-479e-b624-7cc55de196e5",
+              "type": undefined,
+            },
+          ],
+          "nodeType": "text",
+          "value": "‣",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": ". Shoulder sausage porchetta landjaeger. Ground round kevin tongue venison brisket burgdoggen pork belly landjaeger. Chuck jerky frankfurter kevin, beef ribs meatball leberkas pork chop tenderloin beef.",
+        },
+      ],
+      "nodeType": "paragraph",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Item",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Item",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Item",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+      ],
+      "nodeType": "unordered-list",
+    },
+    Object {
+      "content": Array [],
+      "nodeType": "hr",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "One",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Two
+Two and a half",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Three",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+      ],
+      "nodeType": "ordered-list",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "This is for the misfits. For the crazy ones.",
+        },
+      ],
+      "nodeType": "blockquote",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "This is a callout",
+        },
+      ],
+      "data": Object {
+        "color": "gray_background",
+        "icon": "⚠️",
+      },
+      "nodeType": "callout",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "Bacon ipsum dolor amet beef ham hock pig cow tail meatloaf. Shoulder sausage porchetta landjaeger. Ground round kevin tongue venison brisket burgdoggen pork belly landjaeger. Chuck jerky frankfurter kevin, beef ribs meatball leberkas pork chop tenderloin beef.",
+        },
+      ],
+      "nodeType": "paragraph",
+    },
+    Object {
+      "content": Array [],
+      "data": Object {
+        "alt": undefined,
+        "caption": Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": undefined,
+        },
+        "src": "https://images.unsplash.com/photo-1498464619740-386503e7e7f5?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb",
+        "type": "image",
+      },
+      "nodeType": "embedded-entry-block",
+    },
+  ],
+  "data": Object {
+    "icon": "👋",
+    "image": Object {
+      "position": 0.5,
+      "src": "https://notion.so/images/page-cover/rijksmuseum_mignons_1660.jpg",
+    },
+  },
+  "nodeType": "document",
+}
+`;
+
+exports[`richTextFromNotion should convert a full Notion page to rich text and preserve the layout 1`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "Heading 1",
+        },
+      ],
+      "nodeType": "heading-1",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "Heading 2",
+        },
+      ],
+      "nodeType": "heading-2",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "Heading 3",
+        },
+      ],
+      "nodeType": "heading-3",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "Bacon ipsum dolor amet beef ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": undefined,
+              "type": "bold",
+            },
+          ],
+          "nodeType": "text",
+          "value": "bold",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " ham ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": undefined,
+              "type": "italic",
+            },
+          ],
+          "nodeType": "text",
+          "value": "italic",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " pig ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": undefined,
+              "type": undefined,
+            },
+          ],
+          "nodeType": "text",
+          "value": "struck-through",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " cow ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": undefined,
+              "type": "code",
+            },
+          ],
+          "nodeType": "text",
+          "value": "code",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " tail ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": "yellow_background",
+              "type": "highlight",
+            },
+          ],
+          "nodeType": "text",
+          "value": "highlight",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " pork ",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "marks": Array [],
+              "nodeType": "text",
+              "value": "link",
+            },
+          ],
+          "data": Object {
+            "uri": "https://example.com",
+          },
+          "nodeType": "hyperlink",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": " meatloaf ",
+        },
+        Object {
+          "marks": Array [
+            Object {
+              "data": "940b0cf1-ab3e-479e-b624-7cc55de196e5",
+              "type": undefined,
+            },
+          ],
+          "nodeType": "text",
+          "value": "‣",
+        },
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": ". Shoulder sausage porchetta landjaeger. Ground round kevin tongue venison brisket burgdoggen pork belly landjaeger. Chuck jerky frankfurter kevin, beef ribs meatball leberkas pork chop tenderloin beef.",
+        },
+      ],
+      "nodeType": "paragraph",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Item",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Item",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Item",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+      ],
+      "nodeType": "unordered-list",
+    },
+    Object {
+      "content": Array [],
+      "nodeType": "hr",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "One",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Two
+Two and a half",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Three",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "nodeType": "list-item",
+        },
+      ],
+      "nodeType": "ordered-list",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "This is for the misfits. For the crazy ones.",
+        },
+      ],
+      "nodeType": "blockquote",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "marks": Array [],
+          "nodeType": "text",
+          "value": "This is a callout",
+        },
+      ],
+      "data": Object {
+        "color": "gray_background",
+        "icon": "⚠️",
+      },
+      "nodeType": "callout",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [
+                Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": "Bacon ipsum dolor amet beef ham hock pig cow tail meatloaf. Shoulder sausage porchetta landjaeger. Ground round kevin tongue venison brisket burgdoggen pork belly landjaeger. Chuck jerky frankfurter kevin, beef ribs meatball leberkas pork chop tenderloin beef.",
+                },
+              ],
+              "nodeType": "paragraph",
+            },
+          ],
+          "data": Object {
+            "length": 1,
+            "ratio": 0.5,
+          },
+          "nodeType": "column",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "content": Array [],
+              "data": Object {
+                "alt": undefined,
+                "caption": Object {
+                  "marks": Array [],
+                  "nodeType": "text",
+                  "value": undefined,
+                },
+                "src": "https://images.unsplash.com/photo-1498464619740-386503e7e7f5?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb",
+                "type": "image",
+              },
+              "nodeType": "embedded-entry-block",
+            },
+          ],
+          "data": Object {
+            "length": 1,
+            "ratio": 0.5,
+          },
+          "nodeType": "column",
+        },
+      ],
+      "data": Object {
+        "length": 2,
+      },
+      "nodeType": "column-list",
+    },
+  ],
+  "data": Object {
+    "icon": "👋",
+    "image": Object {
+      "position": 0.5,
+      "src": "https://notion.so/images/page-cover/rijksmuseum_mignons_1660.jpg",
+    },
+  },
+  "nodeType": "document",
+}
+`;
