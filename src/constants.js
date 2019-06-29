@@ -1,10 +1,17 @@
 import {
-  BLOCKS,
+  BLOCKS as CONTENTFUL_BLOCKS,
   MARKS as CONTENTFUL_MARKS,
   INLINES
 } from '@contentful/rich-text-types';
 
-export { BLOCKS, INLINES };
+export { INLINES };
+
+export const BLOCKS = {
+  ...CONTENTFUL_BLOCKS,
+  CALLOUT: 'callout',
+  COLUMN_LIST: 'column-list',
+  COLUMN: 'column'
+};
 
 export const MARKS = {
   ...CONTENTFUL_MARKS,
@@ -22,7 +29,10 @@ export const NOTION_BLOCKS = {
   NUMBERED_LIST: 'numbered_list',
   IMAGE: 'image',
   DIVIDER: 'divider',
-  COLLECTION_VIEW: 'collection_view'
+  COLLECTION_VIEW: 'collection_view',
+  CALLOUT: 'callout',
+  COLUMN_LIST: 'column_list',
+  COLUMN: 'column'
 };
 
 export const NOTION_MARKS = {

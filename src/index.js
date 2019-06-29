@@ -1,4 +1,6 @@
-import notionBlocksToRichTextNodes from './notion-blocks-to-rich-text-nodes';
+import notionBlocksToRichTextNodes, {
+  toDocument
+} from './notion-blocks-to-rich-text-nodes';
 import get from './utils/get';
 
 export {
@@ -11,18 +13,17 @@ export {
 
 const defaultOptions = {
   transformFns: {},
-  fallbackTransformFn: () => null
+  defaultTransformFn: () => null,
+  preserveLayout: false
 };
 
-export function richTextFromNotion(page, options) {
-  const blocks = get(page, 'recordMap.block', {});
+export function richTextFromNotion(data, options = {}) {
+  const blocks = get(data, 'recordMap.block', {});
+  const page = Object.values(blocks)[0];
   const content = notionBlocksToRichTextNodes(blocks, {
     ...defaultOptions,
     ...options
   });
-  return {
-    nodeType: 'document',
-    data: {},
-    content
-  };
+
+  return toDocument(page, content);
 }

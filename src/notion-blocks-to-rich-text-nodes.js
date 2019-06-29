@@ -15,6 +15,33 @@ const markMap = {
   [NOTION_MARKS.HIGHLIGHT]: MARKS.HIGHLIGHT
 };
 
+function getIcon(block) {
+  return get(block, 'value.format.page_icon');
+}
+
+function getImageSrc(url) {
+  const isHostedByNotion = url.startsWith('/images/');
+  return isHostedByNotion ? `https://notion.so${url}` : url;
+}
+
+export function toDocument(page, content) {
+  const icon = getIcon(page);
+  const url = get(page, 'value.format.page_cover');
+  const src = getImageSrc(url);
+  const position = get(page, 'value.format.page_cover_position');
+  return {
+    nodeType: 'document',
+    data: {
+      icon,
+      image: {
+        src,
+        position
+      }
+    },
+    content
+  };
+}
+
 export function toMark(mark = []) {
   const [typeId, data] = mark;
   return {
@@ -100,8 +127,7 @@ export function toListItem(listType) {
 
 export function toImage(block) {
   const url = get(block, 'value.format.display_source');
-  const isHostedByNotion = url.startsWith('/images/');
-  const src = isHostedByNotion ? `https://notion.so${url}` : url;
+  const src = getImageSrc(url);
   const caption = get(block, 'value.properties.caption[0]', []);
   return {
     nodeType: BLOCKS.EMBEDDED_ENTRY,
@@ -122,38 +148,120 @@ export function toHorizontalRule() {
   };
 }
 
+export function toCallout(block) {
+  const content = get(block, 'value.properties.title', []);
+  const icon = getIcon(block);
+  const color = get(block, 'value.format.block_color');
+
+  if (isEmpty(content)) {
+    return null;
+  }
+
+  return {
+    nodeType: BLOCKS.CALLOUT,
+    data: { icon, color },
+    content: content.map(toText)
+  };
+}
+
+export function toColumn(block, blocks, config) {
+  const ratio = get(block, 'value.format.column_ratio');
+  const contentIds = get(block, 'value.content');
+  const contentBlocks = contentIds.reduce(
+    (allBlocks, id) => ({ ...allBlocks, [id]: blocks[id] }),
+    {}
+  );
+  const content = notionBlocksToRichTextNodes(contentBlocks, config);
+  return {
+    nodeType: BLOCKS.COLUMN,
+    data: {
+      ratio,
+      length: contentIds.length
+    },
+    content,
+    ids: contentIds
+  };
+}
+
+export function toColumnList(block, blocks, config) {
+  const columnIds = get(block, 'value.content');
+  const result = columnIds.reduce(
+    (allColumns, id) => {
+      const columnBlock = blocks[id];
+      const column = toColumn(columnBlock, blocks, config);
+      const { ids, ...rest } = column;
+      allColumns.ids.push(...ids);
+      allColumns.columns.push(rest);
+      return allColumns;
+    },
+    { ids: [], columns: [] }
+  );
+  return {
+    nodeType: BLOCKS.COLUMN_LIST,
+    data: {
+      length: columnIds.length
+    },
+    content: result.columns,
+    ids: [...columnIds, ...result.ids]
+  };
+}
+
 const defaultTransformerFns = {
-  [NOTION_BLOCKS.HEADER]: toHeading(2),
-  [NOTION_BLOCKS.SUB_HEADER]: toHeading(3),
-  [NOTION_BLOCKS.SUB_SUB_HEADER]: toHeading(4),
+  [NOTION_BLOCKS.HEADER]: toHeading(1),
+  [NOTION_BLOCKS.SUB_HEADER]: toHeading(2),
+  [NOTION_BLOCKS.SUB_SUB_HEADER]: toHeading(3),
   [NOTION_BLOCKS.TEXT]: toParagraph,
   [NOTION_BLOCKS.QUOTE]: toQuote,
+  [NOTION_BLOCKS.CALLOUT]: toCallout,
   [NOTION_BLOCKS.BULLETED_LIST]: toListItem(BLOCKS.UL_LIST),
   [NOTION_BLOCKS.NUMBERED_LIST]: toListItem(BLOCKS.OL_LIST),
   [NOTION_BLOCKS.IMAGE]: toImage,
-  [NOTION_BLOCKS.DIVIDER]: toHorizontalRule
+  [NOTION_BLOCKS.DIVIDER]: toHorizontalRule,
+  [NOTION_BLOCKS.COLUMN_LIST]: toColumnList
 };
 
 export default function notionBlocksToRichTextNodes(blocks = {}, options = {}) {
-  const { transformFns: customTransformFns, fallbackTransformFn } = options;
+  const {
+    transformFns: customTransformFns,
+    defaultTransformFn,
+    preserveLayout
+  } = options;
   const transformFns = { ...defaultTransformerFns, ...customTransformFns };
+
+  if (!preserveLayout) {
+    transformFns[NOTION_BLOCKS.COLUMN_LIST] = null;
+  }
+
+  const config = { transformFns, defaultTransformFn };
+  const entries = Object.entries(blocks);
+  const completedIds = [];
   const nodes = [];
 
   let tmpListType = null;
   let tmpListContent = null;
 
   /* eslint-disable no-restricted-syntax, no-continue */
-  for (const block of Object.values(blocks)) {
-    const type = get(block, 'value.type');
-    const transformerFn = transformFns[type] || fallbackTransformFn;
+  for (const entry of entries) {
+    const [id, block] = entry;
 
-    const node = transformerFn(block);
+    if (completedIds.includes(id)) {
+      continue;
+    }
+
+    const type = get(block, 'value.type');
+    const transformerFn = transformFns[type] || defaultTransformFn;
+
+    const node = transformerFn(block, blocks, config);
 
     if (!node) {
       continue;
     }
 
-    const { listType, ...rest } = node;
+    const { listType, ids, ...rest } = node;
+
+    if (ids) {
+      completedIds.push(...ids);
+    }
 
     const isEndOfList = tmpListContent && tmpListType !== listType;
 
@@ -181,6 +289,7 @@ export default function notionBlocksToRichTextNodes(blocks = {}, options = {}) {
       continue;
     }
 
+    completedIds.push(id);
     nodes.push(rest);
   }
   /* eslint-enable no-restricted-syntax, no-continue */
