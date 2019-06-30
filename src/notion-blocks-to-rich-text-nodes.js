@@ -19,7 +19,7 @@ function getIcon(block) {
   return get(block, 'value.format.page_icon');
 }
 
-function getImageSrc(url) {
+function getImageSrc(url = '') {
   const isHostedByNotion = url.startsWith('/images/');
   return isHostedByNotion ? `https://notion.so${url}` : url;
 }
