@@ -10,7 +10,9 @@ export const BLOCKS = {
   ...CONTENTFUL_BLOCKS,
   CALLOUT: 'callout',
   COLUMN_LIST: 'column-list',
-  COLUMN: 'column'
+  COLUMN: 'column',
+  EMBED: 'embed',
+  IMAGE: 'image'
 };
 
 export const MARKS = {
@@ -32,7 +34,8 @@ export const NOTION_BLOCKS = {
   COLLECTION_VIEW: 'collection_view',
   CALLOUT: 'callout',
   COLUMN_LIST: 'column_list',
-  COLUMN: 'column'
+  COLUMN: 'column',
+  EMBED: 'embed'
 };
 
 export const NOTION_MARKS = {

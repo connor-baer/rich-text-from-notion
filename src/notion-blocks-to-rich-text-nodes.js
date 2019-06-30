@@ -21,7 +21,18 @@ function getIcon(block) {
 
 function getImageSrc(url = '') {
   const isHostedByNotion = url.startsWith('/images/');
-  return isHostedByNotion ? `https://notion.so${url}` : url;
+
+  if (isHostedByNotion) {
+    return `https://notion.so${url}`;
+  }
+
+  const isHostedByUnsplash = url.includes('unsplash');
+
+  if (isHostedByUnsplash) {
+    return url;
+  }
+
+  return `https://notion.so/image/${encodeURIComponent(url)}`;
 }
 
 export function toDocument(page, content) {
@@ -130,9 +141,8 @@ export function toImage(block) {
   const src = getImageSrc(url);
   const caption = get(block, 'value.properties.caption[0]', []);
   return {
-    nodeType: BLOCKS.EMBEDDED_ENTRY,
+    nodeType: BLOCKS.IMAGE,
     data: {
-      type: 'image',
       src,
       alt: caption[0],
       caption: toText(caption)
@@ -164,9 +174,10 @@ export function toCallout(block) {
   };
 }
 
-export function toColumn(block, blocks, config) {
+export function toColumn(blocks, block, index, config) {
   const ratio = get(block, 'value.format.column_ratio');
   const contentIds = get(block, 'value.content');
+  const { length } = contentIds;
   const contentBlocks = contentIds.reduce(
     (allBlocks, id) => ({ ...allBlocks, [id]: blocks[id] }),
     {}
@@ -176,7 +187,8 @@ export function toColumn(block, blocks, config) {
     nodeType: BLOCKS.COLUMN,
     data: {
       ratio,
-      length: contentIds.length
+      length,
+      index
     },
     content,
     ids: contentIds
@@ -185,10 +197,11 @@ export function toColumn(block, blocks, config) {
 
 export function toColumnList(block, blocks, config) {
   const columnIds = get(block, 'value.content');
+  const { length } = columnIds;
   const result = columnIds.reduce(
-    (allColumns, id) => {
+    (allColumns, id, index) => {
       const columnBlock = blocks[id];
-      const column = toColumn(columnBlock, blocks, config);
+      const column = toColumn(blocks, columnBlock, index, config);
       const { ids, ...rest } = column;
       allColumns.ids.push(...ids);
       allColumns.columns.push(rest);
@@ -199,10 +212,26 @@ export function toColumnList(block, blocks, config) {
   return {
     nodeType: BLOCKS.COLUMN_LIST,
     data: {
-      length: columnIds.length
+      length
     },
     content: result.columns,
     ids: [...columnIds, ...result.ids]
+  };
+}
+
+export function toEmbed(block) {
+  return {
+    nodeType: BLOCKS.EMBED,
+    content: [],
+    data: {
+      src: get(block, 'value.format.display_source'),
+      width: get(block, 'value.format.block_width'),
+      height: get(block, 'value.format.block_height'),
+      fullWidth: get(block, 'value.format.block_full_width'),
+      pageWidth: get(block, 'value.format.block_page_width'),
+      preserveScale: get(block, 'value.format.block_preserve_scale'),
+      aspectRatio: get(block, 'value.format.block_aspect_ratio')
+    }
   };
 }
 
@@ -217,7 +246,8 @@ const defaultTransformerFns = {
   [NOTION_BLOCKS.NUMBERED_LIST]: toListItem(BLOCKS.OL_LIST),
   [NOTION_BLOCKS.IMAGE]: toImage,
   [NOTION_BLOCKS.DIVIDER]: toHorizontalRule,
-  [NOTION_BLOCKS.COLUMN_LIST]: toColumnList
+  [NOTION_BLOCKS.COLUMN_LIST]: toColumnList,
+  [NOTION_BLOCKS.EMBED]: toEmbed
 };
 
 export default function notionBlocksToRichTextNodes(blocks = {}, options = {}) {
