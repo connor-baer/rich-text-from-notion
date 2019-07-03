@@ -94,12 +94,8 @@ exports[`notionBlocksToRichTextNodes should transform an image 1`] = `
 Object {
   "content": Array [],
   "data": Object {
-    "alt": undefined,
-    "caption": Object {
-      "marks": Array [],
-      "nodeType": "text",
-      "value": undefined,
-    },
+    "alt": null,
+    "caption": null,
     "src": "https://images.unsplash.com/photo-1498464619740-386503e7e7f5?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb",
   },
   "nodeType": "image",
@@ -627,12 +623,8 @@ Two and a half",
     Object {
       "content": Array [],
       "data": Object {
-        "alt": undefined,
-        "caption": Object {
-          "marks": Array [],
-          "nodeType": "text",
-          "value": undefined,
-        },
+        "alt": null,
+        "caption": null,
         "src": "https://images.unsplash.com/photo-1498464619740-386503e7e7f5?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb",
       },
       "nodeType": "image",
@@ -956,12 +948,8 @@ Two and a half",
             Object {
               "content": Array [],
               "data": Object {
-                "alt": undefined,
-                "caption": Object {
-                  "marks": Array [],
-                  "nodeType": "text",
-                  "value": undefined,
-                },
+                "alt": null,
+                "caption": null,
                 "src": "https://images.unsplash.com/photo-1498464619740-386503e7e7f5?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb",
               },
               "nodeType": "image",

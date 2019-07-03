@@ -136,16 +136,33 @@ export function toListItem(listType) {
   };
 }
 
+export function toCaption(block) {
+  const content = get(block, 'value.properties.caption', []);
+  if (isEmpty(content)) {
+    return null;
+  }
+  return {
+    nodeType: 'document',
+    content: [
+      {
+        nodeType: BLOCKS.PARAGRAPH,
+        content: content.map(toText)
+      }
+    ]
+  };
+}
+
 export function toImage(block) {
   const url = get(block, 'value.properties.source[0][0]');
   const src = getImageSrc(url);
-  const caption = get(block, 'value.properties.caption[0]', []);
+  const caption = toCaption(block);
+  const alt = caption && caption.content.map(({ value }) => value).join('');
   return {
     nodeType: BLOCKS.IMAGE,
     data: {
       src,
-      alt: caption[0],
-      caption: toText(caption)
+      alt,
+      caption
     },
     content: []
   };
