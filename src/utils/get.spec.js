@@ -7,7 +7,8 @@ describe('get', () => {
       baz: [
         {
           fizz: 'buzz'
-        }
+        },
+        ['que']
       ]
     }
   };
@@ -45,5 +46,10 @@ describe('get', () => {
   it('should return the default value if the path does not exist', () => {
     const actual = get(obj, 'fizz.buzz', 'default');
     expect(actual).toBe('default');
+  });
+
+  it('should handle nested arrays', () => {
+    const actual = get(obj, 'foo.baz[1][0]');
+    expect(actual).toBe('que');
   });
 });

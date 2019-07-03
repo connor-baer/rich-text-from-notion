@@ -90,11 +90,9 @@ export function toText(text = []) {
 export function toHeading(level) {
   return block => {
     const content = get(block, 'value.properties.title', []);
-
     if (isEmpty(content)) {
       return null;
     }
-
     return {
       nodeType: `heading-${level}`,
       content: content.map(toText)
@@ -104,11 +102,9 @@ export function toHeading(level) {
 
 export function toParagraph(block) {
   const content = get(block, 'value.properties.title', []);
-
   if (isEmpty(content)) {
     return null;
   }
-
   return {
     nodeType: BLOCKS.PARAGRAPH,
     content: content.map(toText)
@@ -117,11 +113,9 @@ export function toParagraph(block) {
 
 export function toQuote(block) {
   const content = get(block, 'value.properties.title', []);
-
   if (isEmpty(content)) {
     return null;
   }
-
   return {
     nodeType: BLOCKS.QUOTE,
     content: content.map(toText)
@@ -129,15 +123,21 @@ export function toQuote(block) {
 }
 
 export function toListItem(listType) {
-  return block => ({
-    listType,
-    nodeType: BLOCKS.LIST_ITEM,
-    content: [toParagraph(block)]
-  });
+  return block => {
+    const content = toParagraph(block);
+    if (isEmpty(content)) {
+      return null;
+    }
+    return {
+      listType,
+      nodeType: BLOCKS.LIST_ITEM,
+      content: [toParagraph(block)]
+    };
+  };
 }
 
 export function toImage(block) {
-  const url = get(block, 'value.format.display_source');
+  const url = get(block, 'value.properties.source[0][0]');
   const src = getImageSrc(url);
   const caption = get(block, 'value.properties.caption[0]', []);
   return {
@@ -162,11 +162,9 @@ export function toCallout(block) {
   const content = get(block, 'value.properties.title', []);
   const icon = getIcon(block);
   const color = get(block, 'value.format.block_color');
-
   if (isEmpty(content)) {
     return null;
   }
-
   return {
     nodeType: BLOCKS.CALLOUT,
     data: { icon, color },
